@@ -23,7 +23,7 @@
 #define TEMPERATURE_INDEX_START     (0)
 #define TEMPERATURE_VALUE_INVALID   (-999)
 #define TEMPERATURE_ID_INVALID      (0)
-#define TEMPERATURE_READING_NOT_AVAILABLE   (-1)
+#define TEMPERATURE_READING_NOT_AVAILABLE   (-999)
 #define TEMPERATURE_READING_OK      (0)
 
 void temperature_read(void);
@@ -31,8 +31,7 @@ void temperature_read(void);
 // reads values found by temperature_read()
 // ID example 0416c19086ff as a uint64
 // TEMPERATURE_MAX_SENSORS
-int32_t temperature_get(uint8_t deviceIndex, uint64_t *id, float *temperature);
-
+float temperature_get(uint8_t deviceIndex, uint64_t *idVal);
 
 void temperature_init(void);
 

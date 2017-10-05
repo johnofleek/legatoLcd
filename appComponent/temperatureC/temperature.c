@@ -32,23 +32,22 @@ char *get_type_by_id(uint8_t idInt) {
 }
 
 // a ram based KVS would be a better way but I don't have one yet
-int32_t temperature_get(uint8_t deviceIndex, uint64_t *idVal, float *temperature)
+float temperature_get(uint8_t deviceIndex, uint64_t *idVal)
 {
-    int32_t returnVal = TEMPERATURE_READING_NOT_AVAILABLE ;
+    float temperature ;
     
     if(deviceIndex < TEMPERATURE_MAX_SENSORS )
     {
-        *temperature = temperature_values[deviceIndex];
+        temperature = temperature_values[deviceIndex];
         *idVal = temperature_ids[deviceIndex];
-        returnVal = TEMPERATURE_READING_OK;
     }
     else 
     {
-        *temperature = TEMPERATURE_VALUE_INVALID;
+        temperature = TEMPERATURE_VALUE_INVALID;
         *idVal = TEMPERATURE_ID_INVALID;
     }
     
-    return (returnVal);
+    return (temperature);
 }
 
 static void temperature_save(uint8_t deviceIndex, uint64_t idVal, float temperature)
@@ -88,8 +87,9 @@ void temperature_read(void)
             ow_finit();
             return ;
         }
-        LE_INFO( "Device %03u Type 0x%02hx (%s) ID %02hx%02hx%02hx%02hx%02hx%02hx CRC 0x%02hx ", \
+        /* LE_INFO( "Device %03u Type 0x%02hx (%s) ID %02hx%02hx%02hx%02hx%02hx%02hx CRC 0x%02hx ", \
             idx, id[0], get_type_by_id(id[0]), id[6], id[5], id[4], id[3], id[2], id[1], id[7]);
+        */
         idx++;
 
         if (DS18X20_start_meas(DS18X20_POWER_EXTERN, NULL) == DS18X20_OK) 
@@ -101,7 +101,7 @@ void temperature_read(void)
             if (DS18X20_read_decicelsius(id, &temp_dc) == DS18X20_OK) 
             {
                 /* Copied from my MCU code, so no float point */
-                LE_INFO( "TEMP %3d.%01d C\n", temp_dc / 10, temp_dc > 0 ? temp_dc % 10 : -temp_dc % 10);
+                // LE_INFO( "TEMP %3d.%01d C\n", temp_dc / 10, temp_dc > 0 ? temp_dc % 10 : -temp_dc % 10);
                 
                 // added save measurement <JT> //
                 if((idx - 1) < TEMPERATURE_MAX_SENSORS)
