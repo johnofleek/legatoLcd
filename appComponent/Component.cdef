@@ -1,0 +1,19 @@
+sources: 
+{
+    main.cpp
+    
+    ./lcd/I2CIO.cpp 
+    ./lcd/LCD.cpp
+    ./lcd/LiquidCrystal_I2C.cpp
+    
+    ./temperatureC/temperature.c
+    ./temperatureC/onewire.c
+    ./temperatureC/uart_posix.c
+    ./temperatureC/devices/common.c
+    ./temperatureC/devices/ds18x20.c
+}
+
+cxxflags:
+{
+    -std=c++0x
+}
