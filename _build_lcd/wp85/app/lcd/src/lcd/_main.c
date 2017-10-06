@@ -10,6 +10,8 @@
 
 
 // Define IPC API interface names.
+LE_SHARED const char* _appComponent_le_data_ServiceInstanceName = "lcd.appComponent.le_data";
+LE_SHARED const char* _appComponent_le_mdc_ServiceInstanceName = "lcd.appComponent.le_mdc";
 
 // Define default component's log session variables.
 LE_SHARED le_log_SessionRef_t lcd_exe_LogSession;

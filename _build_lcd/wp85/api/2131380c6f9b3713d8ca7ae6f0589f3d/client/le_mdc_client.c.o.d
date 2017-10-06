@@ -1,5 +1,6 @@
-_build_lcd/wp85/component/adb4e63cd6f249cbe557e6cd77ed0cdc/obj/49eaee100d19c7b4a2267ad5b05fc2c6.o: \
- /home/john/workspace/legato/apps/john/lcdTemperature/appComponent/temperatureC/temperature.c \
+_build_lcd/wp85/api/2131380c6f9b3713d8ca7ae6f0589f3d/client/le_mdc_client.c.o: \
+ _build_lcd/wp85/api/2131380c6f9b3713d8ca7ae6f0589f3d/client/le_mdc_client.c \
+ _build_lcd/wp85/api/2131380c6f9b3713d8ca7ae6f0589f3d/client/le_mdc_messages.h \
  /home/john/legato/packages/legato.framework.16.10.3.wp85-wp750x-201705031608/resources/legato/framework/c/inc/legato.h \
  /home/john/legato/packages/legato.framework.16.10.3.wp85-wp750x-201705031608/resources/legato/framework/c/inc/le_build_config.h \
  /home/john/legato/packages/legato.framework.16.10.3.wp85-wp750x-201705031608/resources/legato/framework/c/inc/le_basics.h \
@@ -29,11 +30,4 @@ _build_lcd/wp85/component/adb4e63cd6f249cbe557e6cd77ed0cdc/obj/49eaee100d19c7b4a
  /home/john/legato/packages/legato.framework.16.10.3.wp85-wp750x-201705031608/resources/legato/framework/c/inc/le_json.h \
  /home/john/legato/packages/legato.framework.16.10.3.wp85-wp750x-201705031608/resources/legato/framework/c/inc/le_tty.h \
  /home/john/legato/packages/legato.framework.16.10.3.wp85-wp750x-201705031608/resources/legato/framework/c/inc/le_atomFile.h \
- _build_lcd/wp85/component/adb4e63cd6f249cbe557e6cd77ed0cdc/src/interfaces.h \
- /home/john/workspace/legato/apps/john/lcdTemperature/_build_lcd/wp85/api/dbf4b5391eb63bfe911b88a6e56515b6/client/le_data_interface.h \
- /home/john/workspace/legato/apps/john/lcdTemperature/_build_lcd/wp85/api/2131380c6f9b3713d8ca7ae6f0589f3d/client/le_mdc_interface.h \
- /home/john/workspace/legato/apps/john/lcdTemperature/appComponent/temperatureC/temperature.h \
- /home/john/workspace/legato/apps/john/lcdTemperature/appComponent/temperatureC/onewire.h \
- /home/john/workspace/legato/apps/john/lcdTemperature/appComponent/temperatureC/devices/ds18x20.h \
- /home/john/workspace/legato/apps/john/lcdTemperature/appComponent/temperatureC/devices/common.h \
- /home/john/workspace/legato/apps/john/lcdTemperature/appComponent/temperatureC/devices/../onewire.h
+ _build_lcd/wp85/api/2131380c6f9b3713d8ca7ae6f0589f3d/client/le_mdc_interface.h

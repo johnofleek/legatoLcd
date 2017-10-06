@@ -28,7 +28,10 @@ extern "C" {
 #define MAIN_TIMER_NAME                 "MAIN_APP_TIMER"
 #define MAIN_TEMPERATURE_UPDATE_RATE (5)        // seconds
 
+// IP
+static le_data_RequestObjRef_t ConnectionRef;
 
+// LCD
 // i2c address
 uint8_t i2c=0x27;   // 16x2 address is 3A
 // Control line PINs
@@ -50,6 +53,7 @@ uint8_t rows=4;
 uint8_t cols=20;
 
 LiquidCrystal_I2C lcd("/dev/i2c-0", i2c, en, rw, rs, d4, d5, d6, d7, bl, POSITIVE);
+
     
 void lcd_init (void) {
 
@@ -74,6 +78,7 @@ void lcd_init (void) {
 
 }
 
+// main app
 void main_displayTemperatures(void)
 {  
     uint8_t deviceIndex;
@@ -115,10 +120,39 @@ static void main_timer_init(void)
     le_timer_Start( updateTimerRef); 
 }
 
-COMPONENT_INIT
-{ 
 
-    
+// IP data connection
+static le_mdc_ProfileRef_t profileRef;
+
+static bool DataConnected = false;
+//--------------------------------------------------------------------------------------------------
+/**
+ * Callback for the connection state
+ */
+//--------------------------------------------------------------------------------------------------
+static void ConnectionStateHandler
+(
+    const char* intfName,
+    bool isConnected,
+    void* contextPtr
+)
+{
+    if (isConnected)
+    {
+        DataConnected = isConnected;
+        printf("Connected through interface '%s'\n", intfName);
+    }
+    else
+    {
+        printf("Disconnected\n");
+        
+        DataConnected = false;
+    }
+}
+
+
+COMPONENT_INIT
+{   
     LE_INFO("started\n");
     
     lcd_init();
@@ -128,4 +162,16 @@ COMPONENT_INIT
     main_displayTemperatures();
 
     main_timer_init();
+    
+    // manually start the service
+    le_data_ConnectService();
+    LE_INFO("data service connected\n");
+    
+    le_data_AddConnectionStateHandler(&ConnectionStateHandler, NULL);
+
+    ConnectionRef = le_data_Request();
+
+    // warning this doesn't handle profiles - just uses the default set with cm
+    profileRef = le_mdc_GetProfile(LE_MDC_DEFAULT_PROFILE);
+    
 }

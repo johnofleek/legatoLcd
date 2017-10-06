@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<app:application xmlns:app="http://www.sierrawireless.com/airvantage/application/1.0" name="lcd" type="" revision="">
+<app:application xmlns:app="http://www.sierrawireless.com/airvantage/application/1.0" name="lcd" type="" revision="unknown">
   <application-manager use="LWM2M_SW"/>
   <capabilities>
     <communication use="legato"/>

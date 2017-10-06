@@ -13,6 +13,15 @@ sources:
     ./temperatureC/devices/ds18x20.c
 }
 
+requires:
+{
+    api:
+    {
+        le_data.api        [manual-start]       // IP
+        modemServices/le_mdc.api                // radio data connection
+    }
+}
+
 cxxflags:
 {
     -std=c++0x

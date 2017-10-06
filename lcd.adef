@@ -21,7 +21,13 @@ requires:
     }
 }
 
-start: manual
+bindings:
+{
+    lcd.appComponent.le_data -> dataConnectionService.le_data
+    lcd.appComponent.le_mdc -> modemService.le_mdc
+}
+
+start: auto
 
 sandboxed: true
 

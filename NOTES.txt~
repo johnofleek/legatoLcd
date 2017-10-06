@@ -5,7 +5,3 @@ Notes on WPx5xx
 
 at!mapuart has been use to configure UART2 as a linux console port and HSO for the customer app
 
-## commands
-at!entercnd="A710"
-at!mapuart=17,1
-
