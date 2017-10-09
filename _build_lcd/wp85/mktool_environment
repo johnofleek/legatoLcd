@@ -19,9 +19,9 @@ LESSOPEN=| /usr/bin/lesspipe %s
 XDG_SESSION_PATH=/org/freedesktop/DisplayManager/Session0
 PATH=/home/john/legato/packages/legato.framework.16.10.3.wp85-wp750x-201705031608/resources/legato/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/home/john/legato/packages/legato.framework.16.10.3.wp85-wp750x-201705031608/resources/legato/build/localhost/bin
 GPG_AGENT_INFO=/run/user/1000/keyring/gpg:0:1
-SESSION_MANAGER=local/john-ubuntuV2:@/tmp/.ICE-unix/1739,unix/john-ubuntuV2:/tmp/.ICE-unix/1739
+SESSION_MANAGER=local/john-ubuntuV2:@/tmp/.ICE-unix/1759,unix/john-ubuntuV2:/tmp/.ICE-unix/1759
 XDG_RUNTIME_DIR=/run/user/1000
-WINDOWID=44040203
+WINDOWID=77594635
 XDG_MENU_PREFIX=gnome-
 SESSION=ubuntu
 XDG_GREETER_DATA_DIR=/var/lib/lightdm-data/john
@@ -36,7 +36,7 @@ PWD=/home/john/workspace/legato/apps/john/lcdTemperature
 QT_QPA_PLATFORMTHEME=appmenu-qt5
 XDG_SEAT=seat0
 GTK_MODULES=overlay-scrollbar:unity-gtk-module
-DBUS_SESSION_BUS_ADDRESS=unix:abstract=/tmp/dbus-h7kvsSMVjl
+DBUS_SESSION_BUS_ADDRESS=unix:abstract=/tmp/dbus-ak8QzpA3gC
 LESSCLOSE=/usr/bin/lesspipe %s %s
 LOGNAME=john
 GNOME_DESKTOP_SESSION_ID=this-is-deprecated
@@ -58,7 +58,7 @@ MFLAGS=
 LEGATO_SYSROOT=/home/john/legato/packages/legato.toolchain.1.7.3.SWI9X15Y_07120900-wp85-wp750x-native-x86_64-201705021320/resources/native/sysroots/armv7a-vfp-neon-poky-linux-gnueabi
 DEFAULTS_PATH=/usr/share/gconf/ubuntu.default.path
 LEGATO_DEVICE_IMAGE=/home/john/legato/packages/legato.device.image.7.12.9.00.wpX5-201705311041/resources
-UPSTART_SESSION=unix:abstract=/com/ubuntu/upstart-session/1000/1471
+UPSTART_SESSION=unix:abstract=/com/ubuntu/upstart-session/1000/1494
 INSTANCE=
 LEGATO_ROOT=/home/john/legato/packages/legato.framework.16.10.3.wp85-wp750x-201705031608/resources/legato
 JAVA_TOOL_OPTIONS=-javaagent:/usr/share/java/jayatanaag.jar 

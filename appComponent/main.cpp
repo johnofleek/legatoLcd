@@ -17,6 +17,7 @@
 #include <unistd.h>
 #include <assert.h>
 
+
 extern "C" {
 // 1 wire temperature probes
 #include "./temperatureC/temperature.h"
@@ -26,7 +27,11 @@ extern "C" {
 #include "./lcd/LiquidCrystal_I2C.h"
 
 #define MAIN_TIMER_NAME                 "MAIN_APP_TIMER"
-#define MAIN_TEMPERATURE_UPDATE_RATE (5)        // seconds
+#define MAIN_TEMPERATURE_UPDATE_RATE (2)        // seconds
+
+#define ROW_TIME        0
+#define ROW_RADIO       1
+#define ROW_TEMPERATURE 2
 
 // IP
 static le_data_RequestObjRef_t ConnectionRef;
@@ -64,19 +69,22 @@ void lcd_init (void) {
     lcd.noAutoscroll();
 
     lcd.setCursor(0,0);
-    lcd.print("0 Stuff 1234567890");
+    lcd.print("HELLO");
 
     lcd.setCursor(0,1);
-    lcd.print("1 signal");
+    lcd.print("FROM");
     
     lcd.setCursor(0,2);
-    lcd.print("2");
+    lcd.print("LINKWAVE");
  
     
     lcd.setCursor(0,3);
-    lcd.print("3 Radio info");
+    lcd.print("");
 
 }
+
+
+
 
 // main app
 void main_displayTemperatures(void)
@@ -97,8 +105,60 @@ void main_displayTemperatures(void)
     temperature = temperature_get( deviceIndex, &id );
     LE_INFO("temp %f ID %" PRIx64 " IDX %d", temperature, id, deviceIndex);
 
-    lcd.setCursor(2,2);
     sprintf(displayData,"T%d %.1f T%d %.1f ",0, temperature_get( 0, &id ), 1, temperature_get( 1, &id ));  
+
+    lcd.setCursor(0, ROW_TEMPERATURE);
+    lcd.print(displayData);
+}
+
+void main_displayDateTime(void)
+{
+    char displayData[32];
+    
+    le_clk_GetLocalDateTimeString ( \
+        "%d %b %y %T", \
+        displayData, \
+        sizeof(displayData), \
+        NULL \
+    );
+        
+    lcd.setCursor(0, ROW_TIME);
+    lcd.print(displayData);
+}
+
+void main_displayRadioInfo(void)
+{
+    // warning this doesn't handle profiles - just uses the default set with cm
+    le_mdc_ProfileRef_t profileRef = le_mdc_GetProfile(LE_MDC_DEFAULT_PROFILE);
+    le_mdc_ConState_t state;
+    char displayData[32] = "                    ";
+    char ipv4[17];
+    uint32_t signalQuality;
+    le_result_t res;
+
+    lcd.setCursor(0,ROW_RADIO);  
+    
+    if(le_mrc_GetSignalQual(&signalQuality)!= LE_OK)
+    {
+        signalQuality = 0;
+    }
+    res = le_mdc_GetSessionState(profileRef, &state);
+          
+    if (state == LE_MDC_CONNECTED)
+    {
+        le_mdc_GetIPv4Address(profileRef, ipv4 , sizeof(ipv4));
+
+        sprintf(displayData, "%s Q%d", ipv4,  signalQuality);
+    }
+    else if(res !=LE_OK)
+    {
+        sprintf(displayData,"RADIO SESSION : %d", res);
+    }
+    else
+    {
+
+        sprintf(displayData,"RADIO - NO IP       ");
+    }     
     lcd.print(displayData);
 }
 
@@ -107,7 +167,9 @@ static le_timer_Ref_t updateTimerRef;
 
 static void updateTimer_cbh(le_timer_Ref_t timerRef)
 {
+    main_displayRadioInfo();
     main_displayTemperatures();
+    main_displayDateTime();
 }
 
 static void main_timer_init(void)
@@ -122,7 +184,7 @@ static void main_timer_init(void)
 
 
 // IP data connection
-static le_mdc_ProfileRef_t profileRef;
+// static le_mdc_ProfileRef_t profileRef;
 
 static bool DataConnected = false;
 //--------------------------------------------------------------------------------------------------
@@ -171,7 +233,6 @@ COMPONENT_INIT
 
     ConnectionRef = le_data_Request();
 
-    // warning this doesn't handle profiles - just uses the default set with cm
-    profileRef = le_mdc_GetProfile(LE_MDC_DEFAULT_PROFILE);
+    
     
 }

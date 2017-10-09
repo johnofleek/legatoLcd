@@ -19,6 +19,8 @@ requires:
     {
         le_data.api        [manual-start]       // IP
         modemServices/le_mdc.api                // radio data connection
+        modemServices/le_mrc.api
+        le_cfg.api
     }
 }
 
