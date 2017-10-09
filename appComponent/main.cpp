@@ -135,6 +135,8 @@ void main_displayRadioInfo(void)
     char ipv4[17];
     uint32_t signalQuality;
     le_result_t res;
+    int strpad = 0;
+    int strPrintPadctr;
 
     lcd.setCursor(0,ROW_RADIO);  
     
@@ -149,6 +151,11 @@ void main_displayRadioInfo(void)
         le_mdc_GetIPv4Address(profileRef, ipv4 , sizeof(ipv4));
 
         sprintf(displayData, "%s Q%d", ipv4,  signalQuality);
+        strpad = cols - strlen(displayData);
+        for (strPrintPadctr=0; strPrintPadctr<strpad;strPrintPadctr++ )
+        {
+            strcat(displayData," ");
+        }
     }
     else if(res !=LE_OK)
     {

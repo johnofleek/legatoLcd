@@ -43,3 +43,9 @@
 210	363	0	_build_lcd/wp85/app/lcd/staging/read-only/bin/lcd	53115dfe345d1488
 363	490	0	_build_lcd/wp85/app/lcd/staging/info.properties	9aa467966edb2290
 490	596	0	lcd.wp85.update	69004491571c12b7
+1	149	0	_build_lcd/wp85/component/adb4e63cd6f249cbe557e6cd77ed0cdc/obj/cce6715d3bf5febca137a76c75f33ad1.o	80b585f3480c694f
+149	191	0	_build_lcd/wp85/staging/read-only/lib/libComponent_appComponent.so	ae5c2697aab2b531
+191	193	0	_build_lcd/wp85/app/lcd/staging/read-only/lib/libComponent_appComponent.so	213e5a2302f670f8
+191	227	0	_build_lcd/wp85/app/lcd/staging/read-only/bin/lcd	53115dfe345d1488
+227	237	0	_build_lcd/wp85/app/lcd/staging/info.properties	9aa467966edb2290
+237	262	0	lcd.wp85.update	69004491571c12b7
