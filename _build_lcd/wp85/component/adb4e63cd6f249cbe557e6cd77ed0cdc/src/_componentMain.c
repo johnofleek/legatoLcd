@@ -24,6 +24,9 @@ void le_mrc_ConnectService(void);
 extern const char* _appComponent_le_cfg_ServiceInstanceName;
 const char** le_cfg_ServiceInstanceNamePtr = &_appComponent_le_cfg_ServiceInstanceName;
 void le_cfg_ConnectService(void);
+extern const char* _appComponent_mqtt_ServiceInstanceName;
+const char** mqtt_ServiceInstanceNamePtr = &_appComponent_mqtt_ServiceInstanceName;
+void mqtt_ConnectService(void);
 // Component log session variables.
 le_log_SessionRef_t appComponent_LogSession;
 le_log_Level_t* appComponent_LogLevelFilterPtr;
@@ -42,6 +45,7 @@ __attribute__((constructor)) void _appComponent_Init(void)
     le_mdc_ConnectService();
     le_mrc_ConnectService();
     le_cfg_ConnectService();
+    // 'mqtt' is [manual-start].
 
     // Register the component with the Log Daemon.
     appComponent_LogSession = log_RegComponent("appComponent", &appComponent_LogLevelFilterPtr);

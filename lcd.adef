@@ -19,6 +19,10 @@ requires:
         [rw]    /dev/i2c-0      /dev/i2c-0  
         [rw]    /dev/ttyHS0     /dev/ttyHS0
     }
+    file:
+    {
+        /usr/sbin/ntpd  /usr/sbin/
+    }
 }
 
 bindings:
@@ -26,6 +30,8 @@ bindings:
     lcd.appComponent.le_data -> dataConnectionService.le_data
     lcd.appComponent.le_mdc -> modemService.le_mdc
     lcd.appComponent.le_mrc -> modemService.le_mrc
+    
+    lcd.appComponent.mqtt -> mqttService.mqtt
 }
 
 start: auto

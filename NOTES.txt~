@@ -1,7 +1,0 @@
-Notes on WPx5xx
-
-/dev/HS0 = UART1
-/dev/HSL1 = UART2
-
-at!mapuart has been use to configure UART2 as a linux console port and HSO for the customer app
-

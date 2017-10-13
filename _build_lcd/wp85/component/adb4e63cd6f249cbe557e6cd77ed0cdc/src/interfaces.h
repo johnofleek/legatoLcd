@@ -15,6 +15,7 @@ extern "C" {
 #include "_build_lcd/wp85/api/2131380c6f9b3713d8ca7ae6f0589f3d/client/le_mdc_interface.h"
 #include "_build_lcd/wp85/api/d699b785b341bdce9ace6ef785317838/client/le_mrc_interface.h"
 #include "_build_lcd/wp85/api/df1eb47983827ed1845ab8920373af33/client/le_cfg_interface.h"
+#include "_build_lcd/wp85/api/c876d445723f49656c7eee4e1e06d04f/client/mqtt_interface.h"
 
 #ifdef __cplusplus
 }

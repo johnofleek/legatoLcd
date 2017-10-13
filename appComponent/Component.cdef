@@ -11,6 +11,8 @@ sources:
     ./temperatureC/uart_posix.c
     ./temperatureC/devices/common.c
     ./temperatureC/devices/ds18x20.c
+    
+    ./avmsMqtt/mqttClient.c
 }
 
 requires:
@@ -21,6 +23,8 @@ requires:
         modemServices/le_mdc.api                // radio data connection
         modemServices/le_mrc.api
         le_cfg.api
+        
+        mqtt.api [manual-start]                 // I'll start this when I'm ready by calling mqtt_ConnectService().
     }
 }
 

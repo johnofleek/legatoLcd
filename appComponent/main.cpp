@@ -21,6 +21,7 @@
 extern "C" {
 // 1 wire temperature probes
 #include "./temperatureC/temperature.h"
+#include "./avmsMqtt/mqttclient.h"
 }
 
 // LCD
@@ -79,7 +80,7 @@ void lcd_init (void) {
  
     
     lcd.setCursor(0,3);
-    lcd.print("");
+    lcd.print("Linkwave ------ WASP");
 
 }
 
@@ -111,9 +112,12 @@ void main_displayTemperatures(void)
     lcd.print(displayData);
 }
 
+
+
 void main_displayDateTime(void)
 {
     char displayData[32];
+
     
     le_clk_GetLocalDateTimeString ( \
         "%d %b %y %T", \
@@ -150,7 +154,7 @@ void main_displayRadioInfo(void)
     {
         le_mdc_GetIPv4Address(profileRef, ipv4 , sizeof(ipv4));
 
-        sprintf(displayData, "%s Q%d", ipv4,  signalQuality);
+        sprintf(displayData, "%s  Q%d", ipv4,  signalQuality);
         strpad = cols - strlen(displayData);
         for (strPrintPadctr=0; strPrintPadctr<strpad;strPrintPadctr++ )
         {
@@ -209,11 +213,11 @@ static void ConnectionStateHandler
     if (isConnected)
     {
         DataConnected = isConnected;
-        printf("Connected through interface '%s'\n", intfName);
+        LE_INFO("Connected through interface '%s'\n", intfName);
     }
     else
     {
-        printf("Disconnected\n");
+        LE_INFO("Disconnected\n");
         
         DataConnected = false;
     }
@@ -232,6 +236,8 @@ COMPONENT_INIT
 
     main_timer_init();
     
+    //le_data_SetTechnologyRank(1,LE_DATA_CELLULAR); // this breaks the data ip system ???
+    
     // manually start the service
     le_data_ConnectService();
     LE_INFO("data service connected\n");
@@ -239,7 +245,6 @@ COMPONENT_INIT
     le_data_AddConnectionStateHandler(&ConnectionStateHandler, NULL);
 
     ConnectionRef = le_data_Request();
-
     
-    
+    mqtt_init();
 }
