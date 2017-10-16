@@ -55,9 +55,11 @@ static void temperature_save(uint8_t deviceIndex, uint64_t idVal, float temperat
     temperature_values[deviceIndex] = temperature;
     temperature_ids[deviceIndex] =  idVal;
 }
+// the following needs sorting out - JT
 
-
-#define SERIAL_PORT ("/dev/ttyHS0")        // note this is HW UART1
+#define SERIAL_PORT ("/dev/ttyHS0")        // note this is HW UART1 WP8548
+//#define SERIAL_PORT ("/dev/ttyGS0")        // note this is HW UART1 WP7502
+   
 
 void temperature_read(void)
 {
@@ -65,6 +67,7 @@ void temperature_read(void)
     uint8_t diff = OW_SEARCH_FIRST;
     int16_t temp_dc;
     uint8_t id[OW_ROMCODE_SIZE];
+    uint32_t convertCount = 0;
     
     if( ow_init(SERIAL_PORT))
     {
@@ -97,6 +100,10 @@ void temperature_read(void)
             while (DS18X20_conversion_in_progress() == DS18X20_CONVERTING) 
             {
                 delay_ms(100); /* It will take a while */
+                if(convertCount++ > 20)
+                {
+                    return;
+                }
             }
             if (DS18X20_read_decicelsius(id, &temp_dc) == DS18X20_OK) 
             {

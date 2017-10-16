@@ -39,7 +39,7 @@ static le_data_RequestObjRef_t ConnectionRef;
 
 // LCD
 // i2c address
-uint8_t i2c=0x27;   // 16x2 address is 3A
+uint8_t i2c=0x3F;   // 16x2 address is 3A  // older 20x4 is 0x27
 // Control line PINs
 uint8_t en=2;
 uint8_t rw=1;
@@ -226,15 +226,17 @@ static void ConnectionStateHandler
 
 COMPONENT_INIT
 {   
-    LE_INFO("started\n");
+    LE_INFO("started");
     
     lcd_init();
+    LE_INFO("LCD");
     
     temperature_init();
+    LE_INFO("Temperature");
     
-    main_displayTemperatures();
-
     main_timer_init();
+    
+    LE_INFO("timer");
     
     //le_data_SetTechnologyRank(1,LE_DATA_CELLULAR); // this breaks the data ip system ???
     
@@ -246,5 +248,7 @@ COMPONENT_INIT
 
     ConnectionRef = le_data_Request();
     
+    // this starts another timer and the timer uplinks the data - not the best way but 
     mqtt_init();
+    LE_INFO("start done");
 }

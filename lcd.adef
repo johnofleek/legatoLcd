@@ -17,7 +17,7 @@ requires:
     device:
     {
         [rw]    /dev/i2c-0      /dev/i2c-0  
-        [rw]    /dev/ttyHS0     /dev/ttyHS0
+        [rw]    /dev/ttyHS0     /dev/ttyHS0         // WP85 16.10.3
     }
     file:
     {
