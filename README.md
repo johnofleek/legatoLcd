@@ -72,16 +72,17 @@ Inventory -> systems -> [your device] select
 Edit
 Applications
 Select applications
-
+````
 
 Select the application and add the credential == the password set in 
 mqttClient.c (not mqtt_client.c) currently set as 
-
+```
 static const char* password = "JT_PI_001";
+```
 
-Note that in the current (crude) mqtt service
-The user is set by the device IMEI in mqttService
-The password is set as above 
+Note that in the current (crude) mqtt service 
+- The user is set by the device IMEI in mqttService
+- The password is set as above 
 
 ## How this was built by me
 ```
