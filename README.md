@@ -19,7 +19,7 @@ License as the original (CC-BY-SA), changes and Linux i2c device adaptions are (
 
 
 Notes on testing for I2C devices. In the following scan /dev/i2c-0 is scanned for devices. In this case the LCD i2c device is a 0x3F
-
+```
 i2cdetect -r 0
 WARNING! This program can confuse your I2C bus, cause data loss and worse!
 I will probe file /dev/i2c-0 using read byte commands.
@@ -34,7 +34,7 @@ Continue? [Y/n] Y
 50: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
 60: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
 70: -- -- -- -- -- -- -- --
-
+```
 
 ## Also C code from onewire-over-uart
 https://github.com/dword1511/onewire-over-uart
