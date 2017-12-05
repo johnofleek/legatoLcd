@@ -18,7 +18,8 @@ other methods of accessing the LCD screens.
 License as the original (CC-BY-SA), changes and Linux i2c device adaptions are (C) Kaj-Michael Lang <milang@tal.org>
 
 
-Notes on testing for I2C devices. In the following scan /dev/i2c-0 is scanned for devices. In this case the LCD i2c device is a 0x3F
+Notes on testing for I2C devices. In the following scan /dev/i2c-0 is scanned for devices. In this case the LCD i2c device is at 0x3F. Method below scans for I2 devices - there are no external I2C devices on the WASP board. We think that 0x3A is the address of the WPs internal microcontroller.
+
 ```
 i2cdetect -r 0
 WARNING! This program can confuse your I2C bus, cause data loss and worse!
